@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>instant-note Audio Sources</title>
+    <link rel="stylesheet" href="../assets/site.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Audio Sources</span>
+        <h1>Every instant-note sound has a record here.</h1>
+        <p>
+          ✓ Only release-clear sounds are bundled in the app. □ Legacy WAV records stay listed below for audit only
+          until their creator and redistribution proof are recovered.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="../">Back to legal home</a>
+          <a class="button-secondary" href="../privacy/">Privacy policy</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Status summary</h2>
+        <div class="grid" id="summary"></div>
+      </section>
+
+      <section class="section">
+        <h2>Ready To Ship</h2>
+        <p class="muted">
+          These bundled sounds have a recorded source page and a clear manifest entry.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sound</th>
+                <th>File</th>
+                <th>Creator</th>
+                <th>License</th>
+                <th>Source</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="ready-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Legacy Blocked Records</h2>
+        <p class="muted">
+          These records are kept for audit history only. Their files are not bundled in the app or kept in the
+          repository until source records and redistribution proof are recovered.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Sound</th>
+                <th>File</th>
+                <th>Status</th>
+                <th>Proof reference</th>
+                <th>Release status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="pending-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const summary = document.getElementById("summary");
+      const readyBody = document.getElementById("ready-body");
+      const pendingBody = document.getElementById("pending-body");
+
+      const statusPill = (status) => {
+        const className = status === "clear" ? "pill pill-clear" : "pill pill-blocked";
+        return `<span class="${className}">${status}</span>`;
+      };
+
+      const formatValue = (value) => {
+        if (value === null || value === undefined || value === "") {
+          return "Pending";
+        }
+
+        if (value === true) {
+          return "Yes";
+        }
+
+        if (value === false) {
+          return "No";
+        }
+
+        return value;
+      };
+
+      const formatSource = (track) => {
+        if (!track.source_url) {
+          return formatValue(track.proof_reference);
+        }
+
+        const label = track.source_label || "Open source";
+        return `<a href="${track.source_url}" target="_blank" rel="noreferrer">${label}</a>`;
+      };
+
+      fetch("../data/audio-licenses.json")
+        .then((response) => response.json())
+        .then((manifest) => {
+          const ready = manifest.tracks.filter((track) => track.release_status === "clear");
+          const pending = manifest.tracks.filter((track) => track.release_status !== "clear");
+          const clearCount = manifest.tracks.filter((track) => track.release_status === "clear").length;
+          const blockedCount = manifest.tracks.filter((track) => track.release_status === "blocked").length;
+
+          summary.innerHTML = [
+            `<article class="card"><h3>${manifest.last_verified}</h3><p class="muted">Last verified date</p></article>`,
+            `<article class="card"><h3>${manifest.tracks.length}</h3><p class="muted">Catalog records</p></article>`,
+            `<article class="card"><h3>${clearCount}</h3><p class="muted">Bundled sounds</p></article>`,
+            `<article class="card"><h3>${blockedCount}</h3><p class="muted">Legacy blocked records</p></article>`
+          ].join("");
+
+          readyBody.innerHTML = ready
+            .map(
+              (track) => `
+                <tr>
+                  <td>${track.display_name}</td>
+                  <td>${formatValue(track.file_name)}</td>
+                  <td>${formatValue(track.creator_name)}</td>
+                  <td>${track.license_name}</td>
+                  <td>${formatSource(track)}</td>
+                  <td>${track.notes}</td>
+                </tr>
+              `
+            )
+            .join("");
+
+          pendingBody.innerHTML = pending
+            .map(
+              (track) => `
+                <tr>
+                  <td>${track.display_name}</td>
+                  <td>${formatValue(track.file_name)}</td>
+                  <td>${formatValue(track.license_status)}</td>
+                  <td>${formatValue(track.proof_reference)}</td>
+                  <td>${statusPill(track.release_status)}</td>
+                  <td>${track.notes}</td>
+                </tr>
+              `
+            )
+            .join("");
+        })
+        .catch(() => {
+          summary.innerHTML = `<article class="card"><h3>Manifest missing</h3><p class="muted">Couldn't load audio-licenses.json.</p></article>`;
+        });
+    </script>
+  </body>
+</html>
