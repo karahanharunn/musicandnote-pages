@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lexio Privacy Policy</title>
+    <link rel="stylesheet" href="../../assets/site.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Privacy Policy</span>
+        <h1>Lexio keeps your learning data local-first.</h1>
+        <p>
+          Effective date: 2026-04-12. Your vocabulary progress, SRS schedules, and session history
+          stay on your device. A small profile record is synced to Firebase so your rating and streak
+          are preserved if you reinstall.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="../">Back to Lexio support</a>
+          <a class="button-secondary" href="../terms/">Terms of Use</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What Lexio stores on your device</h2>
+        <ul>
+          <li>Vocabulary groups, story text, and flashcard content — seeded locally at install.</li>
+          <li>Your FSRS review schedule: each word's due date, stability, difficulty, and review count.</li>
+          <li>Session history: date, duration, word count, and correct-answer count for the last 30 days.</li>
+          <li>Completed topic IDs and vocabulary level you selected in onboarding.</li>
+          <li>Appearance preferences (theme and palette).</li>
+          <li>Premium access state, restored from App Store on request.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>What Lexio syncs to Firebase</h2>
+        <p class="muted">
+          Lexio uses Firebase Firestore to sync a lightweight profile record so your progress is
+          not lost if you reinstall. The synced fields are:
+        </p>
+        <ul>
+          <li>Player ELO rating and rating band.</li>
+          <li>Daily streak and total cards studied.</li>
+          <li>Vocabulary level (beginner, intermediate, or advanced).</li>
+        </ul>
+        <p class="muted" style="margin-top:12px;">
+          Firebase Remote Config is used to deliver app configuration flags (for example, toggling
+          features or updating content without a full app update). No personal data is sent via
+          Remote Config.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Analytics</h2>
+        <p class="muted">
+          Lexio may use PostHog to collect anonymous usage events such as session completions,
+          paywall views, and plan selections. These events do not include story text, note content,
+          or personally identifiable information. Analytics can be disabled by contacting support.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Purchases and subscriptions</h2>
+        <p class="muted">
+          Premium subscriptions (monthly, yearly, or lifetime) are processed entirely by Apple via
+          StoreKit. Lexio does not store your payment card information. Purchase state is verified
+          locally on-device and kept in a secure UserDefaults key; it is not sent to a Lexio server.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>What Lexio does not collect</h2>
+        <ul>
+          <li>Your name, email address, or any account credentials.</li>
+          <li>Location data.</li>
+          <li>Contacts, camera, or microphone access.</li>
+          <li>The content of your reading sessions beyond aggregate correct/incorrect counts.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Children</h2>
+        <p class="muted">
+          Lexio is intended for users aged 17 and older in line with its App Store rating. It is
+          not directed at children under 13 and does not knowingly collect data from children.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Data deletion</h2>
+        <p class="muted">
+          You can reset all local progress inside the app via Settings → Reset Progress. To request
+          deletion of your Firebase profile record, email
+          <a href="mailto:support@lexio.app">support@lexio.app</a> with your device's approximate
+          first-use date and we will remove it within 30 days.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Questions</h2>
+        <p class="muted">
+          For privacy questions or data requests, contact
+          <a href="mailto:support@lexio.app">support@lexio.app</a>.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
