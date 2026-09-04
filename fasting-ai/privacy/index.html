@@ -70,7 +70,7 @@
       <section class="section">
         <h2>Analytics and logging</h2>
         <p class="muted">
-          Fasting AI does not include a third-party analytics SDK. Debug file logging is limited to debug
+          The app uses PostHog, a third-party product analytics service, to understand how it is used. We send a small set of product events &mdash; app launches, screen views, onboarding steps, meals and exercise logged, fasts completed, paywall views and dismissals, purchase attempts and their outcome, review prompts, and notification setting changes &mdash; together with a few properties such as premium status and fasting goal. These are linked to the anonymous identifier described above. We do not send your name, email address, meal photos, or health data to PostHog, and we do not use this data to track you across other companies&rsquo; apps or websites. PostHog processes the data on our behalf on servers in the United States. You can turn this off at any time in Settings &rsaquo; Privacy &rsaquo; Share usage analytics; turning it off stops further events from being sent. Debug file logging is limited to debug
           builds. Release builds may still emit limited OS-level runtime logs for operational events such as
           errors or purchase flow state, without storing full meal photos or full personal identifiers in our
           own backend.
