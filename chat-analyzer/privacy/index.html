@@ -12,8 +12,8 @@
         <span class="eyebrow">Privacy Policy</span>
         <h1>Chat Analyzer never uploads your chat.</h1>
         <p>
-          Effective date: 2026-09-22. Chat Analyzer reads a WhatsApp chat export you choose, analyzes it on your
-          iPhone with Apple Intelligence, and keeps the messages, the names you enter and every verdict on your device.
+          Effective date: 2026-09-22. Chat Analyzer reads a WhatsApp chat export you choose and analyzes it on your
+          iPhone with Apple Intelligence. The chat text is not kept after the score is saved.
         </p>
         <div class="hero-actions">
           <a class="button" href="../">Back to Chat Analyzer legal</a>
@@ -24,9 +24,9 @@
       <section class="section">
         <h2>What Chat Analyzer stores on your device</h2>
         <ul>
-          <li>The chat export you import, parsed into messages, until you delete the analysis.</li>
-          <li>The people, situation and question you enter, and the verdict the app produces.</li>
-          <li>Your saved analyses (the "record") and custom scenarios.</li>
+          <li>The export, in memory only, while a score is being built. The chat text is not saved.</li>
+          <li>After that, the names, the question, your guess, and the score.</li>
+          <li>Custom scenarios you write yourself.</li>
         </ul>
       </section>
 
@@ -49,13 +49,12 @@
       <section class="section">
         <h2>Analytics and logging</h2>
         <p class="muted">
-          The app uses PostHog, a third-party product analytics service, to understand how it is used. We send a
-          small set of product events &mdash; app launches, screen views, onboarding steps, analyses started and
-          completed, import and analysis errors by type, review prompts &mdash; together with the app version and
-          an anonymous device identifier. We never send the chat, the names you enter, your question, or the
-          verdict text. PostHog processes the data on our behalf on servers in the United States. We do not use
-          this data to track you across other companies&rsquo; apps or websites. Debug file logging is limited
-          to debug builds.
+          Release builds use PostHog to understand how the app is used. Events cover app opens, an analysis
+          starting, the first saved score, opening a situation or a saved score, and the rating prompt, plus
+          the app version and an anonymous device identifier. Screen contents are not captured. We never send
+          the chat, the names, your question, or the verdict text. PostHog processes this on servers in the
+          United States. We do not use it to track you across other companies&rsquo; apps or websites. Debug
+          builds and UI tests do not send these events.
         </p>
       </section>
 
